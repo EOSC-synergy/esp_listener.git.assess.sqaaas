@@ -1,0 +1,64 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/esp_listener:
+      branch: master
+      repo: https://gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/esp_listener.git
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/esp_listener git:
+        commands:
+        - /usr/bin/env sh .sqa/script.cheeky-silver-collie.sh
+        container: qc.acc_homely-alizarin-shrew
+  QC.Doc:
+    repos:
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/esp_listener find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.seedy-lilac-tarsier.sh
+        container: qc.doc_homey-tangerine-butterfly
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/esp_listener git:
+        commands:
+        - /usr/bin/env sh .sqa/script.wheezy-alizarin-mule.sh
+        container: qc.doc_smelly-yellow-shrew
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/esp_listener markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.nerdy-goldenrod-mandrill.sh
+        container: qc.doc_wiggy-myrtle-bobcat
+  QC.Lic:
+    repos:
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/esp_listener licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.wiggy-smalt-dogfish.sh
+        container: qc.lic_clammy-brown-spitz
+  QC.Sec:
+    repos:
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/esp_listener bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.gimpy-burgundy-zebu.sh
+        container: qc.sec_snoopy-xanthic-bordeaux
+  QC.Sty:
+    repos:
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/esp_listener flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.cloudy-cerise-slug.sh
+        container: qc.sty_snazzy-buff-termite
+  QC.Uni:
+    repos:
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/esp_listener pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.seedy-violet-spaniel.sh
+        container: qc.uni_tasty-plum-coral
+  QC.Ver:
+    repos:
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/esp_listener get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.whiny-saffron-slug.sh
+        container: qc.ver_shaky-chestnut-frigatebird
+timeout: 5400
